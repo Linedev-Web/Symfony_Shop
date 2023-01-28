@@ -33,15 +33,16 @@
                             <a class="nav-link disabled">Disabled</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    {% if app.user %}
+                        <a href="{{ path('account') }}">Mon compte</a> | <a href="{{ path('logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('login') }}">Connexion</a> | <a href="{{ path('register') }}">Inscription</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
     </header>
-    <main role="main" class="container">
+    <main role="main">
         {% block body %}{% endblock %}
     </main>
     <footer class="container">

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <h1>Mon compte</h1>
+                <ul class="list-unstyled">
+                    <li>Bonjour, {{ app.user.firstname }} {{ app.user.lastname }}</li>
+                </ul>
+                <hr>
+                <ul class="list-unstyled">
+                    <li>- Modifier mon mot de passe</li>
+                    <li>- Ajouter mes adresses</li>
+                    <li>- Mes commandes</li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock %}
