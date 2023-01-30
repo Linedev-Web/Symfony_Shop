@@ -17,26 +17,30 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Carousel</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="{{ path('home') }}">Symfony Shop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="#">Nos produits</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link disabled">Qui nommes-nous ?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link disabled">Contact</a>
                         </li>
                     </ul>
                     {% if app.user %}
-                        <a href="{{ path('account') }}">Mon compte</a> | <a href="{{ path('logout') }}">Déconnexion</a>
+                        <a href="{{ path('account') }}" class="btn btn-secondary mx-2">Mon
+                            compte <span class="small">{{ app.user.firstname }}</span></a> | <a href="{{ path('logout') }}"
+                                                                     class="btn btn-secondary mx-2">Déconnexion</a>
                     {% else %}
-                        <a href="{{ path('login') }}">Connexion</a> | <a href="{{ path('register') }}">Inscription</a>
+                        <a href="{{ path('login') }}" class="btn btn-secondary mx-2">Connexion</a> | <a
+                            href="{{ path('register') }}" class="btn btn-secondary mx-2">Inscription</a>
                     {% endif %}
                 </div>
             </div>
@@ -46,8 +50,7 @@
         {% block body %}{% endblock %}
     </main>
     <footer class="container">
-        <p class="float-end"><a href="#">Back to top</a></p>
-        <p>© 2017–2022 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        <p>© 2017–2022 Symfony Shop, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
     </footer>
     </body>
 </html>
