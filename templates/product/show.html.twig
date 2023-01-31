@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="row gy-3 align-items-stretch">
+            <div class="col-lg-3 h-auto">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('uploads/images/')~product.illustration }}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="d-flex align-content-center justify-content-between">
+                            <span class="fw-bold">{{ (product.price / 100) |number_format(2, ',', '.') }} €</span>
+                            <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
