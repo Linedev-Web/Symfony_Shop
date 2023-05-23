@@ -5,15 +5,36 @@
 {% block body %}
     <div class="container my-5">
         <h1>Je passe ma commande</h1>
-        <div class="row row-cols-6">
-            <div class="col-auto"
-            {% set formHtml %}
-                {{ form(form) }}
-            {% endset %}
+        <div class="row row-cols-2">
+            <div class="col">
+                {% set formHtml %}
+                    {{ form(form) }}
+                {% endset %}
 
-            {{ formHtml|replace({'[br]': '</br>'})|raw }}
-        </div>
-        <div class="col-auto">
+                {{ formHtml|replace({'[br]': '</br>'})|raw }}
+            </div>
+            <div class="col">
+                <p>Récap de ma commande</p>
+                <p>Retrouver le récapitulatif de vos produits</p>
+                <div class="card card-body">
+                    {% for product in cart %}
+                        <div class="row">
+                            <div class="col-2 align-self-center">
+                                <img height="75" src="{{ asset('uploads/images/')~product.product.illustration }}"
+                                     alt="{{ product.product.name }}">
+                            </div>
+                            <div class="col-8 align-self-center">
+                                {{ product.product.name }}
+                                <br>
+                                {{ product.product.subtitle }}
+                            </div>
+                            <div class="col-2 align-self-center">
+                                x {{ product.quantity }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
