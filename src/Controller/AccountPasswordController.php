@@ -19,7 +19,7 @@ class AccountPasswordController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/account/password', name: 'account_password')]
+    #[Route('/compte/password', name: 'account_password')]
     public function index(Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $notification = null;
