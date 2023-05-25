@@ -62,7 +62,7 @@ class StripeController extends AbstractController
                     'name' => $order->getCarrierName(),
                     'images' => ['https://png.pngtree.com/png-clipart/20190520/original/pngtree-transport-icon-png-image_3606057.jpg']
                 ],
-                'unit_amount' => $order->getCarrierPrice() * 100,
+                'unit_amount' => $order->getCarrierPrice(),
             ],
             'quantity' => 1,
         ];
@@ -74,9 +74,13 @@ class StripeController extends AbstractController
             'customer_email' => $this->getUser()->getEmail(),
             'line_items' => [$products_for_stripe],
             'mode' => 'payment',
-            'success_url' => 'http://localhost:8000/success',
-            'cancel_url' => 'http://localhost:8000/cancel',
+            'success_url' => 'http://localhost:8000/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'http://localhost:8000/commande/erreur/{CHECKOUT_SESSION_ID}',
         ]);
+
+        $order->setStripeSessionId($checkout_session->id);
+
+        $this->entityManager->flush();
 
         return new RedirectResponse($checkout_session->url);
     }
