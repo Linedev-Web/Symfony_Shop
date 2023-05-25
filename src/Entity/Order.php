@@ -39,6 +39,9 @@ class Order
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -160,5 +163,17 @@ class Order
         }
 
         return $total;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
     }
 }

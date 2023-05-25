@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
 {% block title %}Paiment de ma commande{% endblock %}
 
 {% block body %}
@@ -46,7 +50,11 @@
                 <strong>Livraison :</strong> {{ carrier.price |number_format(2, ',', '.') }} € <br/>
                 <hr>
                 <strong>Total : </strong> {{ ((total / 100)+ carrier.price) |number_format(2, ',', '.') }} €
-                <a href="" class="btn btn-success d-block">Payer| {{ ((total / 100)+ carrier.price) |number_format(2, ',', '.') }} €</a>
+                <form action="{{ path('order_stipe_payment', {'reference': reference}) }}" method="POST">
+                    <button button type="submit" id="checkout-button" class="btn btn-success d-block">
+                        Payer| {{ ((total / 100)+ carrier.price) |number_format(2, ',', '.') }} €
+                    </button>
+                </form>
             </div>
         </div>
     </div>
