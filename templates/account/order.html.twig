@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes addresses{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1>Mes Commande</h1>
+        <p>C'est dans cet espace que vous allez pouvoir gêrer tooutes vos commandes</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ path('account') }}" class="btn btn-secondary">Retour</a>
+        </div>
+        <hr>
+        {% if orders | length > 0 %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Passée le</th>
+                    <th scope="col">Référence</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <th scope="row"><span class="">{{ order.createdAt | date('d/m/y') }}</span></th>
+                        <td>{{ order.reference }}</td>
+                        <td>{{ order.orderDetails | length }}</td>
+                        <td>{{ ((order.carrierPrice + order.getTotal) / 100) | number_format(2, ',', '.') }} </td>
+                        <td class="text-end"><a href="{{ path('account_order_show', {'reference': order.reference}) }}">Voir
+                                ma commande</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Vous n'avez pas encore ajouter addresses dans votre compte client. Pourquoi en ajouter.</p>
+        {% endif %}
+    </div>
+{% endblock %}
