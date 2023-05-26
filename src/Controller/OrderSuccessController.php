@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Card;
@@ -33,6 +34,11 @@ class OrderSuccessController extends AbstractController
             $cart->remove();
             $order->setIsPaid(1);
             $this->entityManager->flush();
+
+
+            $mail = new Mail();
+            $content = "Bonjour ". $order->getUser()->getFirstName().'<br> dqzdqz dqdz dqzdqz dqzdz dqz dzq ';
+            $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstName(), 'Votre commande sur le site est valider', $content);
         }
 
 
